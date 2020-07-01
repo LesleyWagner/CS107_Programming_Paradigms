@@ -15,9 +15,6 @@ imdb::imdb(const string& directory)
 {
   const string actorFileName = directory + "/" + kActorFileName;
   const string movieFileName = directory + "/" + kMovieFileName;
-
-  cout << actorFileName << endl;
-  cout << movieFileName << endl;
   
   actorFile = acquireFileMap(actorFileName, actorInfo);
   movieFile = acquireFileMap(movieFileName, movieInfo);

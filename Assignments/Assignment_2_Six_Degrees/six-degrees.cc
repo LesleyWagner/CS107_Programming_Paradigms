@@ -9,6 +9,56 @@
 using namespace std;
 
 /**
+* Finds the shortest path between two actors with breadth first search,
+* if there is one.
+* Prints the links in the path between the two actors.
+*
+* @param actor1 name of actor 1
+* @param actor2 name of actor 2 
+* @param db a reference to the imdb which holds the movies and actors data
+* @return whether there is a path between the two actors.
+*/
+bool findShortestPath(const string& actor1, const string& actor2, const imdb& db) {
+    list<path> partialPaths;
+    set<string> previousActors;
+    set<film> previousMovies;
+
+    path startPath(actor1);
+    partialPaths.push_back(startPath);
+    
+    while (!partialPaths.empty() && partialPaths.front().getLength() < 6) {
+        path latestPath = partialPaths.front();
+        partialPaths.pop_front();
+        string searchActor = latestPath.getLastPlayer(); // actor whose connections we are searching through
+        vector<film> films;
+        db.getCredits(searchActor, films);
+
+        for (film movie : films) {
+            previousMovies.insert(movie);
+            vector<string> cast;
+            db.getCast(movie, cast);
+
+            for (string actor : cast) {
+                previousActors.insert(actor);
+                
+                path newPath(latestPath);
+                newPath.addConnection(movie, actor);
+
+                if (actor == actor2) { // found a path between the actors
+                    cout << newPath << endl;
+                    return true;
+                }
+                else {
+                    partialPaths.push_back(newPath);
+                }
+            }
+        }
+    }
+
+    return false; // no path between actors
+}
+
+/**
  * Using the specified prompt, requests that the user supply
  * the name of an actor or actress.  The code returns
  * once the user has supplied a name for which some record within
@@ -69,8 +119,8 @@ int main(int argc, const char *argv[])
     if (source == target) {
       cout << "Good one.  This is only interesting if you specify two different people." << endl;
     } 
-	else { // find shortest path
-		if (true) {
+	else {
+		if (findShortestPath(source, target, db)) {
 
 		}
 		else {

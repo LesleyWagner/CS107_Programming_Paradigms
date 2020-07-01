@@ -94,13 +94,13 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <RemoteBuildCommandLine>make imdb-test</RemoteBuildCommandLine>
+    <RemoteBuildCommandLine>make </RemoteBuildCommandLine>
     <RemoteReBuildCommandLine>make clean &amp;&amp; make</RemoteReBuildCommandLine>
     <RemoteCleanCommandLine>make clean</RemoteCleanCommandLine>
     <SourcesToCopyRemotelyOverride>@(SourcesToCopyRemotely);@(DataFilesToCopyRemotely); assn-2-six-degrees-data\assn-2-six-degrees-data\updated\little-endian\actordata; Makefile; assn-2-six-degrees-data\assn-2-six-degrees-data\updated\little-endian\moviedata</SourcesToCopyRemotelyOverride>
     <AdditionalSourcesToCopyMapping>
     </AdditionalSourcesToCopyMapping>
-    <RemoteBuildOutputs>/home/lesleyw/projects/Assignment_2_Six_Degrees/imdb-test</RemoteBuildOutputs>
+    <RemoteBuildOutputs>/home/lesleyw/projects/Assignment_2_Six_Degrees/six-degrees</RemoteBuildOutputs>
   </PropertyGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
